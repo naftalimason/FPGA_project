@@ -1,0 +1,23 @@
+TX MAC + uart_rgf across the T06 error suite (~2.6-2.9 ms) — the serialiser
+alternating between normal replies and {E} resend requests while the R0C
+counters accumulate all six injected errors.
+
+The src_q / len_q pair segments the traffic precisely: SRC_REPLY frames with
+len_q = 0x10 (register replies, including the recovery write/readback of
+uart_checker - wdata 0x00BEEF11 and the checker register stepping 0xC3F0E1 ->
+0xBEEF11 are visible mid-window) interleaved with SRC_RESEND episodes of
+len_q = 0x06, where msg_q's top six bytes hold the constant
+{7B 45 00 00 00 7D} (the lower bytes are stale reply data - only len_q bytes
+are ever sent). Six {E} transmissions match the six injections.
+
+The error-event rows and the uart_reg accumulator tell the counting story in
+lock-step: phy_err_evt at 2.677 and 2.746 ms take uart_reg 0x000000 ->
+0x000001 -> 0x000002; mac_err_evt at 2.767 ms makes it 0x000102; and the
+three clsf_err_evt pulses at 2.788 / 2.816 / 2.851 ms walk the top byte
+0x010102 -> 0x020102 -> 0x030102 - exactly {clsf=3, mac=1, phy=2}. At
+~2.87 ms the TB's uart_reg read executes: the reply frame carries the
+pre-clear value 0x030102 while the R0C clear commits on the same completed-
+read cycle, and uart_reg snaps to 0x000000 - the second read visible at the
+right edge returns zero, closing the read-to-clear verification. The addr
+row parking at 0xFFFF between accesses and uart_config[0] = 1 (still ODD
+parity here) complete the picture.

@@ -1,0 +1,23 @@
+rx_afifo session flush at the start of image write #2 — the pointer reset,
+its cross-domain lag, and the transient phantom flags safely contained inside
+the v2.4 settle window.
+
+At ~2,948,995 ns the accepted second IMG_WRITE_HDR moves the FSM S_IDLE ->
+S_WR_SETUP: req_write and rx_fifo_srst pulse together, and img_status drops
+0x41008 -> 0x01008 (req_write clears ready_to_read - the stored image is
+being invalidated). The pointer rows then show the flush crossing domains:
+wptr (gclk write side, raw srst) resets gray 0x18 -> 0x00 immediately, while
+rptr (clk read side, srst via the toggle CDC) resets ~25 ns later - a
+directly visible CDC lag between the two halves of the same logical flush.
+
+In between, the write side's stale view produces the expected TRANSIENT
+artefacts: full and almost_full pulse high for ~70 ns (zeroed write pointer
+compared against the still-stale synced read gray 0x18) and almost_empty
+dips briefly. This is the same class of race that caused BUG-1 on the tx
+side - and the screenshot shows exactly why it is now harmless: the FSM
+holds S_WR_SETUP for the whole settle count (~125 ns, until ~2,949,150 ns),
+so the producer is still in P_IDLE while the phantoms live and die. Only at
+S_BURST_WR does the producer arm (P_ARMED), with complete dropping as its
+packed counter clears; img_rx_monitor -> 0x00000 and write_complete fall a
+few ticks later (the cleared clk-side counter re-crossing the monitor sync).
+Every flag is clean before the first payload can possibly arrive.

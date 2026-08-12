@@ -1,0 +1,26 @@
+Full RX chain, image-write session — T07's second image write (inverted 8x8
+data) including the mid-burst illegal frame, the {E} recovery, and the
+post-write verification reads.
+
+At the left edge (~2.95 ms) msg_type_o steps MSG_REG_READ_REQ ->
+MSG_IMG_WRITE_HDR: the {I,H,W} header arms burst_mode, and from there the
+window is a gapless MSG_PIXEL_PAYLOAD plateau - 16-byte frames back-to-back,
+num_submsg = 3, with u_phy.rts ticking low once per frame as each held payload
+waits for the producer push (per-frame backpressure). The pixel_r/g/b rows
+carry the de-interleaved inverted channel words (0x84ff..., 0xffffffff,
+patterns complementary to the tb_*_8x8.mem contents), while img_height/
+img_width churn with don't-care aliases of the payload bytes - they were only
+meaningful at the header (0x000008).
+
+The main event: at t = 3.113 ms a 6-byte frame appears mid-burst (num_submsg
+drops to 1) - and because burst_mode has parser priority, ONLY 3-submessage
+payloads are legal while bursting, so msg_legal stays low and classifier_err
+pulses exactly once (spy event #4). The classifier parks in C_REJECT, the line
+goes briefly idle while the {E} resend request is transmitted and rx_phy runs
+its RESYNC re-arm, and the payload stream then resumes seamlessly - the
+resent frame and all remaining payloads are accepted with no counter or
+address disturbance (the errored frame never advanced the burst). From
+~3.30 ms the session closes with normal-mode register reads (msg_type_o back
+to MSG_REG_READ_REQ, local_addr 0x0000 then 0x0004): the img_status /
+img_rx_monitor verification confirming ready_to_read and write_complete for
+the overwritten image.

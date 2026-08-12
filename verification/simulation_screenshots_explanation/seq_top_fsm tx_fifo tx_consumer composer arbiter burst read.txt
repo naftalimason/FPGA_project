@@ -1,0 +1,25 @@
+TX drain chain, burst-read session — image read #1 at the consumer/composer
+level: sixteen held-valid message cycles turning FIFO rows into wire-exact
+payload replies.
+
+The session is bracketed by the setup pair (tx_fifo_srst + start_read at
+~2.061 ms, with ahb_dir / tx_src / fmt_sel rising for the whole command) and
+the return to C_IDLE at ~2.447 ms. In between, the consumer runs exactly 16
+C_SEND segments, each one UART-message long (~22.9 us): tx_msg_valid is HELD
+high with the three FWFT heads presented on tx_line_r until tx_mac's
+tx_msg_done pulse, at which point pop_r/rd_en advance all three FIFOs and the
+packed monitor steps +4 (0x00004 ... 0x0003C, wrapping to 0x10000 =
+read_complete on the last message). data_ok stays high throughout - the AHB
+prefill guarantees a staged row is always ready - and err_underflow stays 0.
+
+The composer output makes the format conversion visible: tx_msg starts the
+window as a register-reply frame (0x7B 52 0C 00 14 ... - the last FIFO-reg
+read before the session), then switches with fmt_sel = 1 to re-interleaved
+pixel payloads: the first is 0x7B7B2C7D00... - payload 0 carrying the
+delimiter-valued pixels ('{' = 0x7B as red data!) - followed by
+0x7BFF0000FF2C... row frames as tx_line_r walks the red words 0x7B00FFFF,
+0xFFFFFFFF, 0xFF01FFFF... The arbiter rows confirm the steering contract:
+cons_tx_valid/cons_tx_done are active only while tx_src = 1, the APB source's
+resp_captured is held off, and after the session the same tx_msg_valid line
+goes back to carrying APB reply handshakes - one shared composer, one
+message at a time.

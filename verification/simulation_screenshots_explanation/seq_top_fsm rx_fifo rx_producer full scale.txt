@@ -1,0 +1,26 @@
+seq_top_fsm + rx_afifo + rx_producer, full 5 ms run — the ingest side's whole
+life: idle except during the two image-write sessions, with clean FIFO health
+throughout.
+
+The producer state row is P_IDLE for the entire run except the two hashed
+bands at ~1.4-1.8 ms (image write #1) and ~2.95-3.15 ms (write #2, inverted
+data), where busy / push_r/g/b fire 16 parallel-push events per session, one
+per accepted PIXEL_PAYLOAD. wdata_r/g/b carry the de-interleaved channel
+words handed over by the classifier (0x52000000-style values outside the
+bursts are don't-care aliases of held register fields, only the burst windows
+carry real pixel data). The rx-FIFO status rows prove lossless operation:
+err_overflow and err_underflow stay 0 for all 5 ms, and full never asserts
+under traffic - the producer's full+almost_full gating throttles ingest long
+before overflow is possible. empty/almost_empty tick low briefly at each push
+and recover as the clk-side AHB MAC drains within a frame time.
+
+Two details deserve attention. First, wptr/rptr are the GRAY-coded pointers:
+they both rest at 0x18 = gray(16) after each 16-word session - equal pointers
+= empty, and the session flush restarts them from 0, which is why the same
+0x18 endpoint repeats. Second, at the start of write #2 (~2.96 ms, with
+rx_fifo_srst) the full flag blips for a single tick: that is the mirrored,
+BENIGN side of the flush-race - the freshly-zeroed write pointer briefly
+compares against the stale synced read pointer. It is harmless by
+construction (a phantom full only pauses a producer that is not even armed
+yet, thanks to the v2.4 settle guard) and clears as soon as the read-side
+flush crosses the synchroniser.

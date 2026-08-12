@@ -1,0 +1,24 @@
+seq_top_fsm + rx_afifo + rx_producer, burst-write zoom — image write #1 as
+seen at the FIFO write port: 16 parallel pushes, gray pointers in lock-step,
+and the producer's per-frame handshake.
+
+After the setup bundle at ~1.40 ms (rx_fifo_srst + req_write, img_status ->
+0x01008), the producer runs its per-frame cycle sixteen times: P_ARMED while
+the next payload travels the UART (~22.9 us), then a one-tick P_PUSH/P_ACK in
+which push_r/g/b strobe TOGETHER - one 32-bit word per colour channel per
+frame. The wdata_r annotations replay the red channel of tb_red_8x8.mem in
+order (0x7B00FFFF, 0xFFFFFFFF, 0xFF01FFFF ... 0x7D000000 ... 0x000000FF) -
+note the first word legitimately contains the '{' byte value 0x7B as pixel
+data, proof of the opcode-bypass path. img_rx_monitor advances +4 right after
+every push: the clk-side MAC drains each row to SRAM within a frame time, so
+ingest is UART-limited, exactly as intended.
+
+The pointer rows are the async-FIFO textbook picture: wptr steps through the
+5-bit Gray sequence 00,01,03,02,06,07,05,04,0C,0D,0F,0E,0A,0B,09,08 -> 18
+(gray(16)), and rptr shadows it within microseconds - the FIFO never holds
+more than one word, so empty re-asserts between pushes and full/almost_full
+never rise (16-deep FIFO, AF threshold 13, depth never challenged at this
+rate; err_overflow/underflow stay 0). On the 16th push the producer's packed
+counter sets its bit16 (complete rises at ~1.79 ms), the FSM parks in P_IDLE,
+and write_complete / ready_to_read / img_status = 0x41008 follow - the busy
+lock releases and the TB's verification reads begin at the right edge.

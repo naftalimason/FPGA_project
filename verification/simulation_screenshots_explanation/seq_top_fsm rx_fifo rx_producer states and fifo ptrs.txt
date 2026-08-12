@@ -1,0 +1,23 @@
+rx_producer + rx_afifo, single push event — ~100 ns inside image write #1
+(payload #7 of 16): one word entering and leaving the async FIFO, gray
+pointers and flags in real time.
+
+The producer sits in P_ARMED while the payload arrives, then executes its
+one-tick cycle at ~1,546,615 ns: P_PUSH (busy high) -> P_ACK -> P_ARMED.
+push_r/g/b and the FIFO's wr_en strobe together for exactly one gclk tick,
+writing all three channel words in parallel: wdata_r = 0x000000AA, wdata_g =
+0xFFFFFF55, wdata_b = 0x0000005A - word 6 of the test image, carrying the
+special pixel (0xAA,0x55,0x5A) planted at p27. img_rx_monitor reads 0x00018
+(24 pixels stored) and steps to 0x0001C once the AHB write of this row lands.
+
+The pointer/flag rows show the CDC mechanics precisely. wptr steps gray
+05 -> 04 (binary 6 -> 7) at the push. About 25 ns later the READ side (clk
+domain, 2-FF gray sync at 100 MHz) sees it: almost_empty deasserts first
+(combinational used-estimate) and the registered empty follows a tick later.
+The clk-side MAC immediately consumes the row - rptr steps 05 -> 04 at
+~1,546,682 ns - and empty re-asserts by ~1,546,690 ns. Net residence time of
+a word in the FIFO is well under 100 ns against a 22,900 ns frame period:
+the FIFO never accumulates depth at UART rate (full/almost_full untouched,
+err flags 0), and the +4 monitor increment confirms one AHB row write per
+push. This is the concurrency the architecture promises - ingest and drain
+overlapping inside a single frame time.

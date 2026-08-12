@@ -1,0 +1,25 @@
+Full RX chain, first four commands — T01's opening register reads of the four
+img_rgf registers, showing one complete classifier handshake cycle per command.
+
+Four identical activity clumps appear at ~6, ~38, ~70 and ~103 us: each is a
+6-byte {R<A2,A1,A0>} request (8.25 us on the wire) followed by a quiet window
+in which the DUT executes the APB read and transmits its 16-byte reply
+(~22 us, on the TX line, not shown here). local_addr steps 0x0000 -> 0x0004 ->
+0x0008 -> 0x000C across the clumps - img_status, img_rx_monitor,
+img_tx_monitor, img_ctrl - and msg_type decodes MSG_REG_READ_REQ each time
+(num_submsg = 1). The command period of ~32.5 us is the natural request +
+reply + handshake cadence at 8 Mbaud.
+
+The classifier rows show the held-request protocol exactly as specified: on
+is_msg & msg_legal the state leaves C_IDLE, new_msg pulses briefly (the
+sequencer accepts immediately, so C_WAIT_ACCEPT lasts one tick), and the FSM
+then parks in C_WAIT_DONE for the WHOLE command - for a read, busy stays high
+until the reply is fully sent (tx_msg_done chain), which is why C_WAIT_DONE
+spans ~21 us. Only then does msg_taken pulse (C_RELEASE) and rx_mac drops
+is_msg, re-asserting u_mac.rts/u_phy.rts so the PC may send the next request -
+the message-level flow control visible as the rts low plateau under each
+processing window. A subtle but instructive detail: pixel_r marches 52000000
+-> 52040000 -> 52080000 -> 520c0000 - these are DON'T-CARE views of the held
+pay[] bytes ('R' = 0x52 and A0 = 00/04/08/0C aliasing into the pixel field);
+only the fields selected by msg_type_o carry meaning, exactly per the
+classifier spec.

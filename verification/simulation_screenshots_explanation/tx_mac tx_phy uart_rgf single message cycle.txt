@@ -1,0 +1,21 @@
+TX MAC + PHY, single message cycle — one complete 16-byte register-read reply
+(a fifo_rgf status read from T01) serialised byte by byte over ~22 us.
+
+tx_msg_valid rises at ~395.5 us and the MAC latches the composer frame into
+msg_q: 0x7B 52 0C 00 0C 2C 56 00 00 00 2C 56 00 03 4C 7D - the reply for the
+fifo_tx_r register at A2 = 0x0C, offset 0x000C, carrying the idle status
+0x0000034C (empty + almost_empty + AF threshold 13, the documented reset
+value). From there the byte engine runs sixteen S_REQ/S_WAITB laps: idx walks
+f -> 0 (MSByte '{' first), tx_byte presents each byte, byte_send hands it to
+tx_phy, and byte_q in the phy shows the one-byte pipeline lag (still holding
+the previous message's 0x7D when '{' is requested).
+
+Inside the phy each byte is 11 bits x 16 gclk ticks: tick_cnt free-runs 0-15
+per bit, bit_cnt walks the 8 data bits (LSB first on tx_line), parity_q
+carries the per-byte ODD parity, and byte_done pulses at each stop-bit end -
+the strobes that advance the MAC's idx at exactly 1.375 us per byte. cts is
+high throughout (the PC model's RTS# is asserted), so no byte ever waits. On
+the sixteenth byte_done (~417.5 us) the MAC pulses tx_msg_done, the arbiter
+maps it back to the APB master as resp_captured (completing the
+busy-until-reply-sent chain), and both FSMs fall back to S_IDLE / P_IDLE
+with tx_line at its high idle level until the next command's reply.

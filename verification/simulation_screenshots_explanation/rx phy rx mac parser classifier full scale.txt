@@ -1,0 +1,27 @@
+Full RX chain (PHY -> MAC -> parser -> classifier), full 5 ms run — how every
+received frame becomes a typed, field-extracted command, and where the content
+rejects fire.
+
+The top half repeats the PHY/MAC picture (frame bursts, k walking 15->0,
+num_submsg switching between 1 and 3); the new information is below. msg_type
+follows the parser's same-cycle decode: MSG_NONE whenever no frame is held,
+MSG_REG_READ_REQ / MSG_REG_WRITE during the register phases, and long
+MSG_IMG_READ_REQ / MSG_PIXEL_PAYLOAD stretches in the image sessions. The
+classifier state row tells the handshake story at a glance: short
+C_IDLE -> C_WAIT_ACCEPT -> C_WAIT_DONE -> C_RELEASE cycles per register
+command, and three long C_WAIT_DONE plateaus (~2.0-2.45 ms, ~3.15-3.55 ms,
+~4.0-4.35 ms) where the classifier holds new_msg's fields stable for an ENTIRE
+burst-read command while busy stays high - the reason the composer can echo
+bar_addr/local_addr combinationally. The field rows show the extracted values
+live: img_height/img_width = 0x000008 during the 8x8 sessions, wdata patterns
+like 0x00080008 / 0xffffffff from the register tests, and the de-interleaved
+pixel_r/g/b channel words during payload ingest.
+
+classifier_err carries all seven content rejects of the run, byte-exact with
+the spy log: #1-#3 at t = 2.788 / 2.816 / 2.851 ms (T06: illegal opcode,
+reserved 11-byte frame, payload-without-header), #4 at t = 3.113 ms (the
+mid-burst illegal frame of T07 - note burst_mode context: a 6-byte frame is
+illegal while bursting), and #5-#7 at t = 4.605 / 4.741 / 4.903 ms (T10's
+random illegal frames). Each pulse is exactly one tick - the C_REJECT parking
+state guarantees one count per rejected frame - and each is followed ~8.4 us
+later by the resend flush (the {E} transmission time).

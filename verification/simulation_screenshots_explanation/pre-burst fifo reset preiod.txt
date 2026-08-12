@@ -1,0 +1,23 @@
+seq_top_fsm + img_rgf, pre-burst FIFO reset period — the v2.4 flush-settle
+guard at the start of image read #1: the exact window that used to host the
+stale-first-payload bug (BUG-1), now held safe by design.
+
+At ~2,060,748 ns the accepted IMG_READ_REQ moves the FSM S_IDLE -> S_RD_SETUP:
+busy rises, the shared selects ahb_dir / tx_src switch to the TX-read path,
+and two 1-tick strobes fire together - req_read (the authorisation request to
+img_rgf) and tx_fifo_srst (the whole-trio tx-FIFO session flush). img_rgf,
+with ready_to_read = 1 and write_complete = 1 from the earlier image write
+(img_status = 0x41008, img_rx_monitor = 0x10000, img_tx_monitor still 0),
+answers ~2 ticks later with its start_read grant pulse.
+
+The key new behaviour: the grant is NOT acted on immediately. grant_q latches
+it (~2,060,765 ns) while settle_cnt counts one gclk tick at a time, 0x00
+through 0x10 (~7.8 ns per tick, ~130 ns total). Only when settle_cnt reaches
+SRST_SETTLE = 16 with the grant held does the FSM advance to S_BURST_RD
+(~2,060,900 ns) and issue the real start_read arm to the consumer/AHB MAC.
+This deliberately outlasts the flush's cross-domain settling: the wr-side
+srst needs ~5-6 ticks through the toggle CDC and the flushed write pointer
+2 more ticks back through the gray-code synchroniser - during which the
+read side's empty flag can phantom-deassert. Arming after tick 16 leaves 6+
+ticks of margin, so the consumer can no longer pop a stale FWFT head. The
+~130 ns pause is invisible at system level (one UART byte is 1,375 ns).

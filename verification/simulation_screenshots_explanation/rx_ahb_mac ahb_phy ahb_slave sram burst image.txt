@@ -1,0 +1,24 @@
+RX AHB write path, burst-write zoom — image write #1 drained row by row:
+16 AHB SINGLE writes carrying the red-channel test image into SRAM word
+addresses 0..15.
+
+The MAC spends the session in M_WAIT plateaus - waiting for all three FIFO
+heads (data_ok = none empty) - punctuated every ~22.9 us by a quick
+M_ISSUE/M_DONE excursion when the next payload lands. Each excursion is one
+complete transaction: haddr presents the pixel-stride address (0x00000,
+0x00004 ... 0x0003C), the phy runs S_ADDR/S_DATA against the zero-wait slave,
+phy_done returns within two clk cycles, and pop_r advances all three FIFO
+heads. The monitor row tracks haddr exactly (+4 per completed row) because
+the packed counter IS the address - one counter, two roles.
+
+The data column is the strongest evidence in this screenshot: HWDATA,
+u_slave.wdata and u_sram.wdata march through 0x7B00FF.., 0xFFFFFF..,
+0xFF01FF.., 0xFFFFFFFF ... 0x7D0000.., 0x001000.., 0x000000FF - literally
+the 16 lines of tb_red_8x8.mem in file order, including the delimiter-valued
+first word. The AHB 2-stage pipeline is visible as the one-step lag between
+HADDR and the latched addr_d/waddr (HADDR already shows 0x00004 while word
+0x0001's data phase commits), and the slave's address fold (HADDR[15:2])
+maps 0x3C -> waddr 0x00F. wr_d rises at the first accepted address phase and
+stays for the session; u_slave.wen/u_sram.wen pulse once per row - sixteen
+clean writes, no waits, no error responses, ending exactly when
+monitor = 0x10000 locks the session complete.

@@ -1,0 +1,22 @@
+TX AHB read path, prefill zoom — the first ~25 us of image read #1: the
+almost_full threshold cutting the clk-speed prefill, then the first
+consumer-paced top-up.
+
+start_read and tx_fifo_srst mark the session at ~2.0610 ms (the strobe fires
+at settle-guard expiry; the MAC receives it ~2 clk later through the toggle
+CDC). What follows is the prefill burst: a tight cluster of
+T_SPACE/T_ISSUE/T_DONE/T_PUSH iterations at ~2.0615-2.0628 ms in which
+xfer_req, phy_done, the slave's accept and push_r all pulse back-to-back -
+roughly one 32-bit row every 5 clk cycles, haddr racing 0x00000 upward while
+the slave's combinational raddr counts 0x000 up in lock-step. The burst stops
+the moment almost_full rises (~2.063 ms): 13 of 16 entries used, space_ok =
+!full & !almost_full closes, and the MAC holds in T_SPACE with 13 rows staged
+in each of the three FIFOs.
+
+The window then goes quiet for ~22.9 us - one UART payload time - until the
+consumer's first tx_msg_done pops a row on the gclk side. The freed slot
+re-opens space_ok for EXACTLY one transaction: at ~2.0855 ms a single read
+fires (haddr 0x00038, raddr 0x00D) and almost_full re-asserts. This
+one-in-one-out throttle repeats for the rest of the session, keeping the
+FIFOs pinned at the threshold: maximum staged data, zero overflow risk -
+err_overflow stays 0 - and the SRAM side always ~13 rows ahead of the wire.

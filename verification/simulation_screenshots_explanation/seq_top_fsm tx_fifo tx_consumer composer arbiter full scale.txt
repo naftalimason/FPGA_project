@@ -1,0 +1,24 @@
+TX drain chain (tx_afifo -> consumer -> arbiter -> composer), full 5 ms run —
+the shared reply path serving BOTH sources: APB register-read replies all run
+long, and the burst consumer during the three image-read sessions.
+
+The arbiter rows tell the sharing story best: arb.tx_msg_valid pulses densely
+through the register-test phases (tx_src = 0, each pulse an APB read reply
+routed from rd_resp_valid) and again inside the three image-read windows -
+but there tx_src / fmt_sel are HIGH (~2.06-2.45, ~3.3-3.55, ~3.95-4.35 ms)
+and the valid/done handshake is steered from cons_tx_valid / cons_tx_done
+instead. The mutual exclusion is structural: tx_src is a level held by
+seq_top_fsm for the whole command, so the two sources can never contend, and
+tx_msg[127:0] switches between register-reply frames (0x7B 52 08 00 ...) and
+re-interleaved pixel payloads accordingly.
+
+The consumer half shows each session's rhythm: C_IDLE except in the three
+windows, where data_ok rises once the prefill lands, then 16 cycles of
+busy / tx_msg_valid held until tx_msg_done, pop_r advancing the FWFT heads,
+and the packed monitor stepping +4 per sent message to 0x10000 (bit16 =
+read_complete) at each session end. tx_line_r documents the data lineage:
+0x7B00FFFF-family words in read #1 (original image), 0x84FF0000-family in
+reads #2 and #3 (inverted overwrite). The FIFO status rows close the health
+argument: empty/almost_empty deassert only while sessions hold staged data,
+rd_en pulses match pops one-for-one, and err_underflow stays 0 for the whole
+run - the consumer never pops an empty FIFO, even across the session flushes.

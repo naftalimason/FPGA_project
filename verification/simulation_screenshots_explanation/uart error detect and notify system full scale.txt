@@ -1,0 +1,25 @@
+UART error detect & notify system, full 5 ms run — the complete resend
+machinery (three error sources -> rx_resend_ctrl -> tx_mac {E} -> flush) over
+every injected error of the regression.
+
+The top rows collect the three DISTINCT error events exactly as the v2
+architecture routes them: phy_error (2.677 / 2.746 / 3.922 ms), mac_err
+(2.767 ms) and classifier_err (2.788 / 2.816 / 2.851, 3.113, and 4.605 /
+4.741 / 4.903 ms). Directly below, rx_resend_ctrl's chain answers every
+single one with the same four-beat signature: any_evt -> sticky
+resend_pending -> (after the {E} is fully transmitted) resend_sent ->
+one-tick flush_rx fanned to both u_phy.flush_rx and u_mac.flush_rx. Eleven
+events in, eleven complete episodes out, and resend_pending never stays
+stuck - each episode is one-shot.
+
+The tx_mac rows show the notification itself: src_q flips to SRC_RESEND with
+len_q = 0x06 and msg_q's 0x7B45... constant for each episode, wedged between
+the normal len 0x10 SRC_REPLY traffic - including the case where an in-flight
+reply finishes first. On the bookkeeping side, uart_reg's brief non-zero
+windows (0x010000 after the mid-burst reject, the 0x01../0x02.. staircase in
+the random phase) always return to zero at the next uart_reg read: the R0C
+clear is qualified by rgf_r0c_read AND uart_reg_sel - note rgf_r0c_read
+pulses on EVERY completed APB read all run long, but only the rare
+uart_reg_sel coincidences clear the counters. is_msg/collect_en at the bottom
+confirm the RX chain resumes framing cleanly after every flush - the system
+never deadlocks and never double-counts.

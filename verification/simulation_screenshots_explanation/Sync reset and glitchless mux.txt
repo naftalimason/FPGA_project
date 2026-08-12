@@ -1,0 +1,24 @@
+Sync reset and glitchless mux — power-up: clock selection and the two per-domain
+reset releases that precede all UART/AHB activity.
+
+CPU_RESETN is released by the testbench at t = 1,000,000 ps (1.0 us). The MMCM
+lock model then counts board-clock cycles and mmcm_locked rises at ~1.15 us.
+Because clk_sel is tied 1 (fixed fast clock), clk_sel_safe = clk_sel &
+mmcm_locked and the read-only mirror clk_sel_stat rise together with the lock.
+At that instant the glitchless mux switches mmcm_clk from the 100 MHz fallback
+(identical to clk before the switch) to the 280 MHz MMCM output - visible as
+the mmcm_clk trace becoming ~2.8x denser at ~1.16 us, while clk stays a clean
+100 MHz throughout. The gclk enable (baud*16 = 128 MHz Bresenham strobe on
+mmcm_clk) starts pulsing right after the switch; note it is a 1-cycle enable
+with the characteristic 2-or-3-mmcm-cycle spacing (16/35 ratio), not a clock.
+
+The single async reset source (CPU_RESETN & mmcm_locked) is then released
+per-domain by the two master_reset_sync instances: mmcm_reset_n (PC/UART side,
+deassert synchronised to mmcm_clk) rises at ~1.18 us, and reset_n (SRAM/AHB
+side, synchronised to clk) rises at ~1.22 us. The stagger between them is
+expected - assertion is common and asynchronous, release is clean in each
+domain. tx_line idles high from the start (UART idle level), and cts_n falls
+to 0 at ~1.20 us: the RX chain is out of reset, rx_mac is in HUNT (ready), and
+rx_phy has registered the ready level onto the CTS# pad - from this point the
+PC model may transmit. This screenshot is the precondition for every other
+waveform: no DUT activity is meaningful before the 1.15-1.22 us window ends.

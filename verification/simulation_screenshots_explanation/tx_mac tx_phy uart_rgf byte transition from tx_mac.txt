@@ -1,0 +1,22 @@
+TX MAC -> PHY byte handoff — the ~1.5-tick seam between two characters of a
+16-byte reply, showing how the serialiser sustains back-to-back bytes with
+per-byte flow-control sampling.
+
+The previous character (0x0C) finishes its stop bit at ~399,457 ns: the phy
+pulses byte_done and drops tx_busy, and tick_cnt - which counted 8,9,a...f
+through the stop bit - parks at 0 as the phy touches P_IDLE. One gclk tick
+later the MAC reacts: S_WAITB -> S_REQ, idx steps d -> c, tx_byte presents
+the next byte (0x00, the A1 field of the fifo-status reply held in msg_q =
+0x7B520C000C2C...034C7D), and byte_send strobes. The phy latches the request
+into its pending flag and byte_q at ~399,472 ns.
+
+The P_IDLE dwell that follows is the design's flow-control point: pending
+and cts are evaluated HERE, at the byte boundary, and with cts high the phy
+launches P_START at ~399,478 ns - tx_line falls and tick_cnt resumes 1,2,3...
+The whole seam costs about two gclk ticks (~16 ns) against a 1,375 ns
+character, so reply throughput is effectively wire-limited. Had the PC
+deasserted RTS# in this window (as the T09 pause test does), pending would
+simply hold the byte and P_IDLE would persist with the line high - the
+character-boundary pause behaviour, with no byte ever split or lost. The MAC
+returns to S_WAITB to await this byte's byte_done, fourteen bytes still to
+go (idx = c).

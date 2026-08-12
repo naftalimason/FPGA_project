@@ -1,0 +1,25 @@
+TX AHB read path, burst-read session — image read #1 end to end on the clk
+side: fast prefill, threshold-paced top-ups, and the session tail.
+
+The session opens at ~2.061 ms with the tx_fifo_srst + start_read pair (after
+the settle guard) and ahb_dir handing the shared phys to this MAC. The state
+row compresses the two-speed story: a dense hash right after start - the MAC
+streams back-to-back SINGLE reads at clk speed until the three tx FIFOs reach
+almost_full (13 of 16) - then long T_SPACE plateaus for the rest of the
+session, punctuated every ~22.9 us by exactly one refill read: each UART
+payload sent by the consumer frees one slot, and space_ok re-opens for one
+transaction. The visible tail makes the pacing concrete: the final rows
+haddr = 0x00034 / 0x00038 / 0x0003C complete at ~2.31 / 2.36 / 2.40 ms,
+after which the MAC parks in T_IDLE (its local complete bit16 set - never
+reported; system completion belongs to the consumer's monitor).
+
+The data rows confirm content and pipelining: the slave's combinational
+raddr walks 0x00C -> 0x00F ahead of each data phase, HRDATA -> hrdata_o
+capture the stored words (ending on 0x000000FF, red word 15), and push_r
+forwards each captured word to the FIFO one cycle after the last phy_done
+(the T_PUSH state that guarantees hrdata_o stability). almost_full stays
+asserted through the body of the session - the intended standing back-
+pressure - dropping for good at ~2.42 ms as the consumer drains the final
+words; err_overflow never fires. Note HWDATA still shows stale write-path
+values: the shared phys' write-data inputs are wired from the RX group and
+are simply don't-care while HWRITE = 0.

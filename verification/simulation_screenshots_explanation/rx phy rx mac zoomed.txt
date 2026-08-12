@@ -1,0 +1,23 @@
+RX PHY + MAC, bit-level zoom — one complete UART character: the opening '{'
+(0x7B) of the run's first frame, showing the 16x-oversampled receive mechanics.
+
+The start-bit falling edge at ~6.05 us fires zero_detect and arms the bit
+timer with threshold = 7 (mid-start-cell confirmation); once the true-zero
+start is confirmed, threshold returns to f (full 16-tick bit spacing) for the
+eight data bits. rx_byte exposes the LSB-first deserialiser assembling 0x7B
+sample by sample: 80 -> c0 -> 60 -> b0 -> d8 -> ec -> f6 -> 7b - each
+transition is one shift of {rx_val, reg >> 1} at a bit-midpoint strobe. Note
+that zero_detect also pulses on data-bit falling edges (~6.45 us) - it is a
+raw edge detector; the FSM only honours it in IDLE/CLEANUP, so those pulses
+are harmless. parity_bad wiggles while the byte is still shifting - it is a
+combinational XOR over the partial byte and is only meaningful at byte_done,
+where it is 0 (the received odd-parity bit matched).
+
+After the parity and stop bits (~7.05-7.30 us), the FSM enters CLEANUP with
+the shortened threshold = 3 tail: byte_valid pulses at ~7.35 us, k steps
+f -> e (the '{' is stored at msg_buf[15]) and collect_en rises - rx_mac has
+left HUNT. Immediately after, threshold jumps to 7 again at ~7.45 us: the
+NEXT byte's start edge ('R') fell inside the cleanup tail and the FSM
+dispatched CLEANUP -> START directly, the back-to-back path (zero_seen_r +
+RX_CLEANUP_THRESHOLD = 3) that makes gapless 8 Mbaud reception possible -
+exactly the fix that earlier bring-up found necessary at full line rate.

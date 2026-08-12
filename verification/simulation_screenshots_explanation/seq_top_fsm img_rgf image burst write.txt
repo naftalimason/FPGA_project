@@ -1,0 +1,24 @@
+seq_top_fsm + img_rgf, image burst write — the complete first image-write
+session (T04): arm, 16-payload ingest, completion lock, and the image becoming
+readable.
+
+At ~1.40 ms the accepted IMG_WRITE_HDR fires the whole setup bundle in one
+place: img_size latches 0x000008000008 (H = W = 8) with its img_size_wr
+strobe, req_write and rx_fifo_srst pulse together (authorisation request +
+whole-rx-trio session flush), and burst_mode rises - from here the parser
+bypasses opcode checking. img_rgf grants start_write, grant_q holds it while
+settle_cnt runs to 0x11 (the v2.4 flush-settle guard), and the FSM enters
+S_BURST_WR. img_status moves 0x00000 -> 0x01008: dimensions loaded but
+ready_to_read still 0 (a write in progress always invalidates the image).
+
+Through S_BURST_WR the busy row shows the ingest rhythm: one pulse per
+accepted payload (busy follows the producer - each frame is released as soon
+as its three channel words are pushed), spaced one UART frame time (~22 us)
+apart. img_rx_monitor counts the drained rows +4 at the same cadence: 0x00004,
+0x00008 ... 0x0003C - the packed {complete,row,col} counter that doubles as
+the SRAM write address. On the 16th payload it wraps to 0x10000: bit16 is
+write_complete, which (through the comp_armed low-then-high guard) ends the
+command at ~1.79 ms - burst_mode drops, ready_to_read rises on the
+write_complete edge, and img_status becomes 0x41008 (ready | 8 | 8). The
+register-command hash at the right edge is the TB immediately reading back
+status/monitor/FIFO registers to verify exactly these values.

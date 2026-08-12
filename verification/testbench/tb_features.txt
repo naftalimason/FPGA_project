@@ -1,0 +1,130 @@
+================================================================================
+uartBurst_ahbSingle - chiptop verification testbench: tested features & results
+================================================================================
+
+HOW TO RUN (from the project root)
+    make clean          # remove build dir, dump.fst, tb_sim.log, copied TB mems
+    make                # Verilate + compile the simulator
+    make simulate       # run; prints the log AND writes tb_sim.log + dump.fst
+  Default build is the small 8x8 image (SIM_DEFINES=+define+SIM_SMALL_IMAGE,
+  chiptop PROG_W=7 TB-only override -> 64 pixels, 16 payload frames). Building
+  with SIM_DEFINES="" scales the same TB to the full 256x256 golden image
+  (red/green/blue_hex.mem at the project root; long simulation).
+  NOTE: `make clean` removes only the TB-generated tb_*_8x8.mem copies - the
+  golden 256x256 *_hex.mem files at the root are never touched.
+
+ARCHITECTURE
+  Class-based SV environment (no UVM): chip_if (interface + modports),
+  Transaction (message builder + rand constraints + error-injection knobs),
+  Driver (PC-side UART TX @ 8 Mbaud, honours DUT CTS# per byte, injects
+  parity/stop/truncation errors, owns PC RTS#), Monitor (PC-side UART RX,
+  parity/stop checked per runtime mode, structural message assembly, mailbox
+  to the scoreboard), Checker (expected-vs-observed byte-exact compare, test
+  bookkeeping, negative "expect silence" checks, coverage counters), tb_top
+  (reference models: image arrays from .mem files, register mirror models,
+  hierarchical SRAM peek; directed + constrained-random test program;
+  timestamped spies on the DUT error/resend events). Every wait has a timeout
+  and a 20 ms global watchdog guarantees termination. dump.fst carries TB,
+  interface and full DUT hierarchy. Deterministic overall PASS/FAIL.
+
+SMALL IMAGE FILES (testbench/, copied to root by `make prep_mem`)
+  tb_red_8x8.mem / tb_green_8x8.mem / tb_blue_8x8.mem - 16 x 32-bit words per
+  channel (4 pixels/word, oldest in MSB). Rows 0-2 red region, 3-5 green
+  region, 6-7 blue region, plus special pixels: delimiter byte values
+  0x7B '{' / 0x7D '}' / 0x2C ',' as pixel data, all-0x00 and all-0xFF
+  boundary pixels.
+
+DIRECTED TESTS
+  T00 reset behaviour: TX line idles high, CTS# asserted after reset.
+  T01 reset register values: all 15 registers of the 3 RGFs read over APB and
+      compared (img_status/monitors/ctrl/checker, uart_reg R0C, uart_config
+      WO-reads-0, clk_status=1, all 6 FIFO status regs incl. AF=13/AE=0
+      threshold mirrors, checkers).
+  T02 register write/read: 24-bit checker fields on all 3 RGFs; min (0x0) and
+      max (0xFFFFFFFF -> 0x00FFFFFF clip) boundary data; back-to-back
+      write-write-read-read at full message rate; write to RO register
+      ignored; unmapped local offset (write ignored / read 0); unmapped BAR
+      A2=0x10 aliasing to img_rgf (as-built BAR default) documented+checked.
+  T03 silent refusal: IMG_READ_REQ with no stored image -> NO reply within
+      300 us (negative check) and system alive afterwards.
+  T04 image write burst: header + 16 payloads (flow-control honoured);
+      img_status(ready/H/W), img_rx_monitor bit16, img_ctrl quiescent;
+      SRAM contents verified word-exact via hierarchical peek (3x16 words);
+      FIFO regs back to idle, sticky overflow/underflow = 0.
+  T05 image read burst: all 16 payload replies byte-exact vs reference
+      (including delimiter-valued pixel bytes); img_tx_monitor bit16;
+      image still valid; FIFO regs clean.
+  T06 error paths (each -> byte-exact {E} + R0C counters + recovery):
+      (a) phy parity error   (b) phy stop-bit/framing error
+      (c) mac frame-structure error (boundary byte neither ',' nor '}')
+      (d) classifier illegal opcode, 6-byte  (e) reserved 11-byte frame
+      (f) pixel payload without a burst header
+      then uart_reg == {clsf=3,mac=1,phy=2}, second read == 0 (R0C), and a
+      clean write/read after the first error proves recovery.
+  T07 image overwrite: second write session with inverted data, an illegal
+      6-byte frame injected mid-burst -> one {E}, PC resends, burst resumes;
+      SRAM verified inverted; exactly one classifier count; full readback.
+      >>> Guards the second-read-session FIFO flush race (BUG-1 below). <<<
+  T08 runtime parity: uart_config -> EVEN, register traffic both directions
+      under even parity (monitor checks every DUT byte's parity), a
+      deliberate parity violation under even mode -> {E} + phy count,
+      switch back to ODD and re-verify.
+  T09 TX flow control: third full image read with PC RTS# deasserted
+      mid-stream - DUT finishes the in-flight byte(s), line verified idle
+      for the whole pause window, stream resumes losslessly.
+  T10 constrained-random: 16 randomized register ops (Transaction constraint
+      block: legal {A2,offset} pairs, random data) checked against the
+      reference model, with random illegal frames folded in every 5th op
+      ({E} + final counter reconciliation over R0C).
+
+RANDOM/COVERAGE SUMMARY (small-image run)
+  21 register writes, 64 byte-exact register-read replies, 2 image writes,
+  3 image reads, 48 payload replies, 11 error injections / 11 {E} replies,
+  96 SRAM words verified, 1 silence check, 2 parity switches, 1 CTS-pause
+  window, 16 random ops, 130 DUT CTS# deassert events observed, 1396 bytes
+  PC->DUT / 1858 bytes DUT->PC. Runtime ~5 ms simulated, ~3 s wall clock.
+
+RESULT
+  11 / 11 tests PASS, 0 errors, OVERALL RESULT: PASS (deterministic; ~2 s
+  wall clock). One genuine RTL bug was found by this testbench and FIXED at
+  the seq_top_fsm level (v2.4); the record below is kept as the bug history.
+
+  BUG-1 [FOUND by T07, FIXED in sources/seq_top_fsm.sv v2.4]:
+  stale first payload on every image-read session after the first
+  ---------------------------------------------------------------------
+  Signature : the first payload reply of read session N>=2 carries WORD 0 OF
+              THE PREVIOUS SESSION'S IMAGE; all remaining payloads correct.
+  Root cause: seq_top_fsm flushes the tx_afifo trio via rd-side srst (gclk,
+              immediate) and wr-side srst (toggle-CDC into clk, ~2-3 ticks
+              later). After the rd-side srst zeroes the read pointer, the
+              read side still compares against the STALE SYNCED write gray
+              pointer (16), so `empty` deasserts for ~5 gclk ticks until the
+              flushed write pointer crosses the gray-pointer synchroniser.
+              The consumer is granted/armed 2-3 ticks after the flush -
+              inside the window - pops the phantom FWFT head (old mem[0])
+              and tx_mac latches it. Confirmed by pointer-level trace:
+              empty 1->0 with rd_bin=0/wr_bin=16 (head=old word), consumer
+              C_ARMED->C_SEND, empty back to 1 three ticks later, new word 0
+              pushed only after the stale message started.
+  Why unseen: first-ever read is immune (pointers already 0); later reads
+              self-mask when the leftover word equals the current image
+              (exactly why T09 passes); the FPGA bring-up script performs
+              only ONE write + ONE read per power-up.
+  Fix applied : seq_top_fsm v2.4 (2026-07-23), seq_top_fsm level ONLY -
+              S_WR_SETUP / S_RD_SETUP hold the img_rgf grant (grant_q latch)
+              and issue start_write / start_read only once SRST_SETTLE = 16
+              enable ticks (~125 ns) have elapsed since the trio flush, i.e.
+              after the far-domain srst (toggle CDC, ~5-6 ticks) and the
+              re-crossing gray pointers (2 more ticks) have settled with 6+
+              ticks of margin. The FIFOs / envelopes / CDC are untouched.
+              Verified: T07 (and all 11 tests) PASS; read #2's first payload
+              now carries the correct inverted word 0. The symmetric guard
+              also covers the (previously benign-by-margin) rx-trio window
+              on start_write.
+
+DELIVERABLES
+  testbench/{chip_if,tb_pkg,Transaction,Driver,Monitor,Checker,tb_top}.sv,
+  testbench/{BUFGMUX_sim,clk_wiz_0_sim}.sv (behavioural IP black boxes),
+  testbench/tb_*_8x8.mem, Makefile (base preserved; source lists / paths /
+  mem handling updated), tb_sim.log, dump.fst, this file.
+================================================================================

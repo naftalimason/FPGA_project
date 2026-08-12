@@ -1,0 +1,23 @@
+TX AHB read path, single-transaction anatomy — one consumer-paced refill read
+(~40 ns total) showing the full T_SPACE -> T_ISSUE -> T_DONE -> T_PUSH cycle
+and the almost_full window that triggers it.
+
+The trigger is visible at the bottom: almost_full drops at ~2,083,280 ns -
+the consumer just sent a payload and popped one row on the gclk side, so the
+fill estimate fell back under the threshold (13). space_ok re-opens and the
+MAC leaves T_SPACE: xfer_req pulses in T_ISSUE at ~2,083,287 ns. The phy runs
+its two phases against the zero-wait slave: S_ADDR at ~2,083,297 ns drives
+HTRANS = 2 with HADDR stepping 0x00030 -> 0x00034, and the slave's accept
+latches the address while its COMBINATIONAL raddr moves 0x00C -> 0x00D in
+the same phase - the trick that lets the synchronous-read SRAM deliver rdata
+in the data phase with zero wait states. S_DATA at ~2,083,307 ns captures
+HRDATA into hrdata_o (the phy's only read-data register) and pulses phy_done.
+
+The MAC deliberately does NOT push in the done cycle: T_PUSH follows one clk
+later (~2,083,317 ns), strobing push_r / wr_en with wdata = hrdata_o - the
+one-cycle-late push that guarantees the registered read data is stable when
+written into the tx FIFO. almost_full re-asserts immediately after the push
+(back to 13 used), haddr advances to 0x00038, and the MAC settles back into
+T_SPACE to wait ~22.9 us for the next freed slot. HWDATA still displays the
+stale write-path value 0x7B00FFFF throughout - wired from the RX group,
+don't-care while HWRITE = 0.

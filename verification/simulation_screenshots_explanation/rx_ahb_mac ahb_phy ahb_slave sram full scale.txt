@@ -1,0 +1,24 @@
+RX AHB write path (MAC -> phy -> slave -> SRAM), full 5 ms run — the clk-side
+drain that turns pushed FIFO rows into SRAM contents, and the sharing of the
+three AHB phys between both directions.
+
+The write MAC leaves M_IDLE only inside the two S_BURST_WR windows
+(~1.4-1.8 ms and ~2.95-3.15 ms): there its xfer_req/pop_r pulse 16 times per
+session while haddr sweeps the pixel-stride addresses 0x00000 -> 0x0003C
+(+4 per row) and the live monitor mirrors it, wrapping to 0x10000 (bit16 =
+write_complete) at each session's end. HWRITE / wr_d are high as a level
+through each write window - the direction is latched per transfer and simply
+never changes inside a session. Down the stack the same value appears three
+times per row - HWDATA, u_slave.wdata, u_sram.wdata - with the slave folding
+the 17-bit pixel-stride HADDR to the 14-bit word address (0x3C -> 0x00F): the
+last row of each session writes word 15. The data annotations tell the
+overwrite story: 0x7B00FFFF-family values in session 1 (original image) and
+their complements (0x84FF0000...) in session 2.
+
+Equally important is what happens BETWEEN the write windows: phy_done and
+dphase_v keep pulsing during the three S_BURST_RD windows even though the
+write MAC is idle - the three ahb_master_phy instances are SHARED, and
+ahb_dir has handed them to the TX-read MAC (its phy_done view is masked off
+this MAC by the envelope's `phy_done & ~ahb_dir_s` gating). err-free
+throughout: HREADY is constant 1 (zero-wait on-chip slave), so every SINGLE
+transfer completes in exactly two clk cycles.

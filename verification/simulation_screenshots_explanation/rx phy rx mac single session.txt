@@ -1,0 +1,23 @@
+RX PHY + MAC, single message session — the very first frame of the run (T01's
+img_status read request {R<0x04,0x00,0x00>}) from first start bit to the HELD
+frame.
+
+Traffic begins at ~6.3 us, right after the 5 us post-reset settle. Six UART
+bytes follow back-to-back at 8 Mbaud (1.375 us per byte, 11 bits each):
+rx_byte assembles 0x7b '{' -> 0x52 'R' -> 0x04 (A2) -> 0x00 -> 0x00 -> 0x7d
+'}', with byte_valid pulsing once per byte at ~7.6 / 9.0 / 10.4 / 11.7 / 13.1 /
+14.5 us. zero_detect marks every start-bit falling edge; threshold briefly
+drops to 7 at each byte start (mid-start-cell confirmation sample) and returns
+to f (full 16-tick bit spacing) for data/parity/stop. active frames each
+character; parity_bad is a combinational view over the shifting byte and is
+only meaningful at byte_done - it is low at every byte_valid, and stop_ok
+stays high: no line errors in this frame.
+
+On the MAC side, the first byte_valid ('{') moves rx_mac from HUNT to COLLECT
+(collect_en high from ~7.6 us) and k[3:0] decrements f -> e -> d -> c -> b -> a
+as each byte is stored top-aligned. At ~14.6 us the '}' lands on boundary slot
+k = 10: the frame terminates, num_submsg latches 1 (6-byte span) and is_msg
+rises - the frame is now HELD. u_mac.rts drops immediately (HOLD state) and
+u_phy.rts follows at the byte boundary, deasserting CTS# toward the PC: the
+message-level backpressure that keeps the next frame out until the classifier
+consumes this one.

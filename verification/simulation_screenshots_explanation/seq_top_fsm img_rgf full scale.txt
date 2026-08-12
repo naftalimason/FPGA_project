@@ -1,0 +1,28 @@
+seq_top_fsm + img_rgf, full 5 ms run — the orchestrator's complete command
+history: two image-write sessions, three image-read sessions, and the
+req/grant/monitor handshake with img_rgf around each.
+
+The state row frames the run: S_BURST_WR at ~1.45-1.85 ms (image write #1)
+and ~2.95-3.15 ms (write #2, inverted), S_BURST_RD at ~2.06-2.45 ms (read #1),
+~3.3-3.55 ms (read #2) and ~3.95-4.35 ms (read #3, with the CTS pause); the
+dense hash between them is the many short S_REG_READ/S_REG_WRITE commands of
+the register tests. burst_mode is high exactly across the two write sessions
+(header -> write_complete), and ahb_dir / tx_src switch together for exactly
+the three read windows - the shared-resource selects that steer the three AHB
+phys and the composer grant. busy's texture differentiates the flows: rapid
+per-frame toggling during writes (busy follows the producer so ingest keeps
+streaming) versus a solid high through each read.
+
+The img_rgf control handshake repeats five times: req_write/req_read pulse
+with the matching fifo_srst (rx trio before writes, tx trio before reads),
+settle_cnt runs 0x00 -> 0x11 (the v2.4 flush-settle guard), grant_q latches
+the start_write/start_read grant, and the operational FSMs are armed only at
+expiry. The status rows tell the image lifecycle: img_size latches
+0x000008000008 at the first header; img_status steps 0x00000 -> 0x01008 (H/W
+loaded, not ready) -> 0x41008 (ready_to_read set on the write_complete rising
+edge at ~1.85 ms), dips back to 0x01008 while write #2 rebuilds the image,
+then returns to 0x41008. write_complete / img_rx_monitor = 0x10000 mark the
+end of each ingest; read_complete / img_tx_monitor = 0x10000 mark the end of
+each readback, each cleared at the next session's counter restart. A read is
+only ever granted while ready_to_read is high - the earlier T03 refusal
+(before any write) is the no-grant case of this same handshake.

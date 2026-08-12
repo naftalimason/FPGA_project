@@ -1,0 +1,22 @@
+TX consumer, single message-boundary zoom — the C_SEND -> C_ARMED -> C_SEND
+handoff between burst payloads #2 and #3 of image read #1, around
+t = 2,105,544 ns.
+
+On the left the consumer is deep in C_SEND for payload #2: tx_msg_valid and
+busy held, the FWFT heads stable (tx_line_r = 0xFFFFFFFF, red word 1), and
+the composer presenting the full frame 0x7BFF0000FF2C0000FF002C00FF00007D -
+held motionless for the whole ~22 us serialisation because the composer is
+combinational and the SOURCE owns stability. The boundary is a single-tick
+chorus: tx_mac's tx_msg_done arrives (routed by the arbiter as cons_tx_done),
+and on that same enable tick pop_r/rd_en advance all three FIFO heads and
+the packed monitor steps 0x00004 -> 0x00008.
+
+The C_ARMED gap that follows is the release protocol, not idleness: the
+consumer lowers tx_msg_valid/busy, which is exactly what tx_mac's S_GAP state
+waits for before returning to S_IDLE - the guarantee that one message can
+never be latched twice. With data_ok still true (the prefilled FIFOs hold
+many rows), the consumer re-enters C_SEND, the new heads appear
+(tx_line_r -> 0xFF01FFFF, red word 2) and the composer instantly re-forms the
+next frame: 0x7BFF0000012C0203FF002C00FF00007D - in which the bytes 01/02/03
+of special pixel p9 are visible on their exact wire positions. Valid
+re-asserts, tx_mac latches, and the next 22 us serialisation begins.

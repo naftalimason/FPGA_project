@@ -1,0 +1,24 @@
+RX PHY + MAC, full 5 ms run — every PC->FPGA frame of the whole regression as
+seen by the receiver front end, with all injected line errors visible.
+
+The burst-shaped activity on rx_line / byte_valid maps the test program:
+register traffic (T01-T02) up to ~1.1 ms, the ~300 us silent-refusal gap of
+T03 (rx_line idle, rx_byte parked on 0x7d - the last '}' of the refused
+request), the dense image-write burst of T04 (~0.4 ms of gapless 16-byte
+payload frames), then the long quiet stretches at ~2.0-2.45 ms, ~3.15-3.55 ms
+and ~4.0-4.35 ms where the PC only RECEIVES (image reads #1..#3) and the RX
+side sits idle. num_submsg alternates between 1 (6-byte register reads) and 3
+(16-byte frames), and k[3:0] shows the rx_mac write pointer walking 15->0
+inside each frame.
+
+The error rows carry the run's five PHY/MAC-level injections, matching the
+spy log exactly: phy_error pulses at t = 2.677 ms (wrong parity bit) and
+t = 2.746 ms - the latter coinciding with the only dip of stop_ok in the whole
+run (forced-low stop bit, framing error). mac_err pulses once at t = 2.767 ms
+(boundary byte neither ',' nor '}' - frame-structure error), and a third
+phy_error appears at t = 3.922 ms: the deliberate parity violation while the
+DUT was switched to EVEN parity in T08. Each error is a clean 1-tick event
+with byte_valid suppressed for that byte (faulty bytes are never presented),
+and u_phy.rts / u_mac.rts show the message-level backpressure rhythm: rts
+drops every time a completed frame is HELD for the classifier and re-asserts
+on release - the mechanism that throttles the PC throughout the run.

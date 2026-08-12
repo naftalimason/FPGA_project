@@ -1,0 +1,23 @@
+RX AHB write path, single-transaction anatomy — one complete FIFO-row-to-SRAM
+write (row 5 of image write #1, data 0xFFFFFFFF) across all four layers in
+~30 ns.
+
+The trigger is the FIFO: the FWFT head rdata already shows 0xFFFFFFFF (the
+memory read is combinational) and empty falls at ~1,524,543 ns when the
+gclk-side push crosses the gray-pointer sync. With all three channels
+non-empty (data_ok), the MAC leaves M_WAIT: xfer_req pulses one clk in
+M_ISSUE at ~1,524,552 ns. The phy then executes the classic 2-phase AHB
+SINGLE: S_ADDR drives HTRANS = 2 (NONSEQ) with HADDR stepping 0x00010 ->
+0x00014, and one clk later S_DATA presents HWDATA while the zero-wait slave
+(HREADY constant 1) commits: dphase_v/wr_d qualify u_slave.wen and u_sram.wen
+for exactly one cycle, with the folded word address waddr = 0x0005
+(HADDR[15:2]) and wdata = 0xFFFFFFFF.
+
+Completion is a single-cycle chorus at ~1,524,570 ns: phy_done (S_DATA with
+HREADY), the MAC's row_done pops all three FIFOs (pop_r/rd_en), haddr and the
+monitor advance together 0x00014 -> 0x00018 (the counter IS the address), and
+the FSM returns M_DONE -> M_WAIT. empty re-asserts ~2 clk later once the pop
+crosses back through the sync, and rdata returns to the (not yet valid) next
+slot. Total latency from data-visible to stored-in-SRAM is ~3 clk cycles -
+against a 22,900 ns payload period, which is why the drain never falls behind
+the UART and the FIFO depth never exceeds one row in steady state.

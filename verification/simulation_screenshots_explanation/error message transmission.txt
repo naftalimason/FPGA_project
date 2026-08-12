@@ -1,0 +1,22 @@
+Error episode #1 end to end (~2.665-2.700 ms) — the first injected parity
+error travelling the whole resend flow: detect, count, {E} transmission,
+flush, and the PC's resent frame.
+
+At t = 2.677 ms the deliberately corrupted byte lands: phy_error pulses
+(collect_en shows rx_mac had already started collecting the frame - the
+partial hunt is flushed on the spot), rx_resend_ctrl's any_evt arms the
+sticky resend_pending on the same tick, and uart_reg counts 0x000000 ->
+0x000001. Crucially, tx_mac is still mid-reply at this moment (tx_busy high,
+the fifo-status reply's last bytes 4C 7D still going out): the {E} has
+priority only from IDLE, so the in-flight reply COMPLETES first - visible as
+S_IDLE arriving at ~2.680 ms only after the 16th byte_done.
+
+tx_mac then samples resend_pending: src_q flips to SRC_RESEND, len_q to 0x06,
+and the byte rows spell the resend request on the wire - 7B, 45 ('E'), 00,
+00, 00, 7D - eleven bit-times each, finishing at ~2.6885 ms where
+resend_sent pulses. rx_resend_ctrl answers with the single-tick flush_rx
+(fanned to both u_phy.flush_rx and u_mac.flush_rx): resend_pending clears,
+the held/partial frame is dropped, and rx_phy enters its RESYNC re-arm.
+After the guaranteed quiet gap, collect_en rises again at ~2.695 ms - the
+TB's resent (clean) frame arriving - and is_msg re-asserts at ~2.700 ms:
+one error, exactly one {E}, one count, full recovery.

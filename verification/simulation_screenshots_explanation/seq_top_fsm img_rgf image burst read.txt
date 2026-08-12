@@ -1,0 +1,24 @@
+seq_top_fsm + img_rgf, image burst read — the complete first image-read
+session (T05): grant-gated arm, solid-busy streaming of 16 payload replies,
+and completion through the TX monitor.
+
+At ~2.061 ms the accepted IMG_READ_REQ pulses req_read + tx_fifo_srst (the
+tx-trio session flush), and the shared selects flip together for the whole
+command: ahb_dir = 1 hands the three AHB phys to the TX-read MAC, tx_src = 1
+grants the composer/tx_mac to the burst consumer. Because ready_to_read = 1
+(image stored by T04), img_rgf answers with the start_read grant; grant_q
+holds it while settle_cnt counts to 0x11 (v2.4 flush-settle guard) and only
+then does S_BURST_RD begin - compare T03, where the same request with
+ready_to_read = 0 received no grant and completed silently.
+
+Unlike the write session, busy is SOLID high for the entire read
+(~2.061-2.447 ms): no new RX command can be admitted while the image streams
+out. img_tx_monitor ticks +4 every ~22.9 us - 0x00004 ... 0x0003C - each step
+triggered by one tx_msg_done, i.e. one 16-byte payload reply fully on the
+wire; the readback rate is UART-limited, not SRAM-limited (the AHB MAC filled
+the tx FIFOs long before, then throttled on almost_full). On the 16th reply
+the counter wraps to 0x10000: bit16 is read_complete, the FSM returns to
+S_IDLE, ahb_dir/tx_src drop, and busy releases - the classifier can now
+release the held request frame. img_rx_monitor, write_complete and
+ready_to_read are untouched throughout: reading never invalidates the stored
+image, which is what lets T09 read it again.

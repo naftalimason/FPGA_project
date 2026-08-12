@@ -1,0 +1,20 @@
+TX PHY, single character cycle — one UART byte ('R' = 0x52, byte 2 of an
+img_checker read reply) shifted onto tx_line bit by bit, with the byte
+handoff from tx_mac on either side.
+
+The window opens on the tail of the previous character ('{'): P_STOP ends
+with the phy's byte_done pulse at ~820.45 us, which the MAC answers within a
+tick - idx steps f -> e, tx_byte presents 0x52, and byte_send fires. The phy
+latches the byte and its ODD parity into byte_q/parity_q (note parity_q
+falls: 0x52 has three ones, so the parity bit is 0) and, with cts high,
+starts immediately: P_START drives tx_line low for exactly one bit time
+(16 gclk ticks, tick_cnt sweeping 0-15), then P_DATA shifts the eight bits
+LSB-first - the visible line pattern 0,1,0,0,1,0,1,0 spelling 0x52 - with
+bit_cnt stepping 1..7 every 125 ns.
+
+P_PARITY drives the computed 0 at ~821.7 us and P_STOP returns the line high,
+closing the 11-bit character at 1.375 us total. The msg_q context row shows
+where this byte lives: 0x7B 52 04 00 10 2C 56 00 00 22 2C 56 00 22 22 7D -
+the byte-exact reply echoing A2 = 0x04 / offset 0x0010 with data 0x00222222,
+i.e. the back-to-back-write test value the TB had just stored in img_checker.
+The err-event and uart_reg rows stay flat: clean traffic, counters untouched.

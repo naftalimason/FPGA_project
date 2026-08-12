@@ -1,0 +1,25 @@
+TX AHB read path (SRAM -> slave -> phy -> MAC -> tx_afifo), full 5 ms run —
+the fill half of all three image-read sessions, and the fill-fast /
+drain-slow rhythm imposed by the FIFO thresholds.
+
+The read MAC leaves T_IDLE only inside the three S_BURST_RD windows
+(~2.06-2.45 ms, ~3.3-3.55 ms, ~3.95-4.35 ms), each opened by the
+tx_fifo_srst + start_read pair (after the settle guard). The phy_done /
+accept rows expose the characteristic burst-read cadence: a DENSE cluster of
+back-to-back SINGLE reads at each window start - the MAC races ahead at clk
+speed until the three tx FIFOs hit almost_full (threshold 13) - followed by
+sparse single reads every ~22.9 us, each one refilling the slot freed when
+the consumer sends one payload on the UART. This is the early-throttle
+policy (space_ok = !full & !almost_full) in action; full and err_overflow
+never assert.
+
+The data rows carry the readback proof. hrdata_o (the phy's only read-data
+register) and the FIFO-bound wdata march through the stored image: session 1
+ends on 0x000000FF (red word 15 of the original image), sessions 2 and 3 on
+0xFFFFFF00 - its complement, confirming the inverted overwrite is what is
+being streamed. raddr peaks at 0x000F (word 15) with the slave's
+address-phase combinational raddr enabling the zero-wait read (rdata valid in
+the data phase). Note HWRITE high only in the two WRITE windows: these are
+the SAME three shared phys, handed between the two MACs by ahb_dir - during
+the read windows this MAC owns them, during writes it sits in T_IDLE
+watching its masked phy_done stay quiet.
