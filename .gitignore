@@ -1,0 +1,37 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors and tooling
+.vscode/
+.idea/
+.claude/
+
+# Word lock files
+~$*
+
+# Verilator build and run outputs
+*-sim/
+dump.fst
+*.log
+verification/*.mem
+
+# Generated image data and board readback outputs
+*_hex.mem
+readback_raw.bin
+readback_image.png
+python/pc2fpga_py_log.txt
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Raw waveform shots, duplicated by the annotated set in
+# verification/simulation_screenshots_explanation
+verification/waveforms_screenshots/
+
+# Superseded report drafts, the published report is FPGA_project_report.pdf
+report/FinalProject_UARTburst_AHBsingle_report.docx
+report/FinalProject_UARTburst_AHBsingle_report.pdf
+report/FPGA_project_report.docx
