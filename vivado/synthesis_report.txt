@@ -1,0 +1,1032 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Thu Jul 23 13:52:38 2026
+# Process ID         : 45204
+# Current directory  : C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.runs/synth_1
+# Command line       : vivado.exe -log chiptop.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source chiptop.tcl
+# Log file           : C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.runs/synth_1/chiptop.vds
+# Journal file       : C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.runs/synth_1\vivado.jou
+# Running On         : LAPTOP-H6RR8K45
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : AMD Ryzen 9 5900HX with Radeon Graphics        
+# CPU Frequency      : 3294 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 33737 MB
+# Swap memory        : 12348 MB
+# Total Virtual      : 46085 MB
+# Available Virtual  : 6109 MB
+#-----------------------------------------------------------
+source chiptop.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental {C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/utils_1/imports/synth_1/chiptop.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/utils_1/imports/synth_1/chiptop.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top chiptop -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 67644
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1319.645 ; gain = 542.289
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'chiptop' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/chiptop.sv:21]
+INFO: [Synth 8-6157] synthesizing module 'ahb_slave' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/ahb_slave.sv:26]
+INFO: [Synth 8-6155] done synthesizing module 'ahb_slave' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/ahb_slave.sv:26]
+INFO: [Synth 8-6157] synthesizing module 'sram' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/sram.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'sram' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/sram.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'apb_slave_envelope' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_slave_envelope.sv:16]
+INFO: [Synth 8-6155] done synthesizing module 'apb_slave_envelope' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_slave_envelope.sv:16]
+INFO: [Synth 8-6157] synthesizing module 'clock_gen' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/clock_gen.sv:27]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.runs/synth_1/.Xil/Vivado-45204-LAPTOP-H6RR8K45/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.runs/synth_1/.Xil/Vivado-45204-LAPTOP-H6RR8K45/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'glitchless_mux' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/glitchless_mux.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'BUFGMUX' [C:/AMDDesignTools/2025.2/Vivado/scripts/rt/data/unisim_comp.v:2779]
+	Parameter CLK_SEL_TYPE bound to: SYNC - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'BUFGMUX' (0#1) [C:/AMDDesignTools/2025.2/Vivado/scripts/rt/data/unisim_comp.v:2779]
+INFO: [Synth 8-6155] done synthesizing module 'glitchless_mux' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/glitchless_mux.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'baud_rate_16th' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/baud_rate_16th.sv:49]
+WARNING: [Synth 8-6104] Input port 'b' has an internal driver [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/UART_package.sv:41]
+WARNING: [Synth 8-6104] Input port 'a' has an internal driver [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/UART_package.sv:42]
+WARNING: [Synth 8-6104] Input port 'b' has an internal driver [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/UART_package.sv:41]
+WARNING: [Synth 8-6104] Input port 'a' has an internal driver [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/UART_package.sv:42]
+WARNING: [Synth 8-6104] Input port 'b' has an internal driver [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/UART_package.sv:41]
+WARNING: [Synth 8-6104] Input port 'a' has an internal driver [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/UART_package.sv:42]
+INFO: [Synth 8-6155] done synthesizing module 'baud_rate_16th' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/baud_rate_16th.sv:49]
+INFO: [Synth 8-6155] done synthesizing module 'clock_gen' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/clock_gen.sv:27]
+INFO: [Synth 8-6157] synthesizing module 'master_reset_sync' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/master_reset_sync.sv:26]
+	Parameter STAGES bound to: 32'b00000000000000000000000000000010 
+INFO: [Synth 8-6155] done synthesizing module 'master_reset_sync' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/master_reset_sync.sv:26]
+INFO: [Synth 8-6157] synthesizing module 'UART_Rx' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/uart_rx.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'rx_phy' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_phy.sv:19]
+INFO: [Synth 8-6157] synthesizing module 'differentiator' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/differentiator.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'differentiator' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/differentiator.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'baud_ctr' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/baud_ctr.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'baud_ctr' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/baud_ctr.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'rx_phy_fsm' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_phy_fsm.sv:16]
+INFO: [Synth 8-6155] done synthesizing module 'rx_phy_fsm' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_phy_fsm.sv:16]
+INFO: [Synth 8-6157] synthesizing module 'rx_shift_reg' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_shift_reg.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'rx_shift_reg' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_shift_reg.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'rx_phy' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_phy.sv:19]
+INFO: [Synth 8-6157] synthesizing module 'rx_mac' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_mac.sv:22]
+INFO: [Synth 8-6157] synthesizing module 'rx_mac_fsm' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_mac_fsm.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'rx_mac_fsm' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_mac_fsm.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'rx_mac' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_mac.sv:22]
+INFO: [Synth 8-6155] done synthesizing module 'UART_Rx' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/uart_rx.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'parser' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/parser.sv:24]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/parser.sv:68]
+INFO: [Synth 8-6155] done synthesizing module 'parser' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/parser.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'classifier' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/classifier.sv:34]
+INFO: [Synth 8-6155] done synthesizing module 'classifier' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/classifier.sv:34]
+INFO: [Synth 8-6157] synthesizing module 'bar' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bar.sv:21]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bar.sv:34]
+INFO: [Synth 8-6155] done synthesizing module 'bar' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bar.sv:21]
+INFO: [Synth 8-6157] synthesizing module 'sequencer_top' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/sequencer_top.sv:26]
+	Parameter PROG_W bound to: 32'b00000000000000000000000000010001 
+INFO: [Synth 8-6157] synthesizing module 'ahb_master_phy' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/ahb_master_phy.sv:28]
+	Parameter ADDR_W bound to: 32'b00000000000000000000000000010001 
+INFO: [Synth 8-6155] done synthesizing module 'ahb_master_phy' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/ahb_master_phy.sv:28]
+INFO: [Synth 8-6157] synthesizing module 'seq_top_fsm' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/seq_top_fsm.sv:24]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/seq_top_fsm.sv:119]
+INFO: [Synth 8-226] default block is never used [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/seq_top_fsm.sv:173]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/seq_top_fsm.sv:175]
+INFO: [Synth 8-6155] done synthesizing module 'seq_top_fsm' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/seq_top_fsm.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'bus_sync_2ff' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bus_sync_2ff.sv:14]
+	Parameter W bound to: 32'b00000000000000000000000000000001 
+INFO: [Synth 8-6155] done synthesizing module 'bus_sync_2ff' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bus_sync_2ff.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'rx_sequencer' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_sequencer.sv:22]
+	Parameter PROG_W bound to: 32'b00000000000000000000000000010001 
+	Parameter ADDR_W bound to: 32'b00000000000000000000000000010001 
+INFO: [Synth 8-6157] synthesizing module 'async_fifo' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/async_fifo.sv:42]
+	Parameter WIDTH bound to: 32'b00000000000000000000000000100000 
+	Parameter DEPTH bound to: 32'b00000000000000000000000000010000 
+	Parameter AF_THRESH bound to: 32'b00000000000000000000000000001101 
+	Parameter AE_THRESH bound to: 32'b00000000000000000000000000000000 
+INFO: [Synth 8-6157] synthesizing module 'bus_sync_2ff__parameterized0' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bus_sync_2ff.sv:14]
+	Parameter W bound to: 32'b00000000000000000000000000000101 
+INFO: [Synth 8-6155] done synthesizing module 'bus_sync_2ff__parameterized0' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bus_sync_2ff.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'fifo_ptr' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/fifo_ptr.sv:19]
+	Parameter DEPTH bound to: 32'b00000000000000000000000000010000 
+	Parameter THRESH bound to: 32'b00000000000000000000000000001101 
+	Parameter IS_WRITE bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'fifo_ptr' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/fifo_ptr.sv:19]
+INFO: [Synth 8-6157] synthesizing module 'fifo_ptr__parameterized0' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/fifo_ptr.sv:19]
+	Parameter DEPTH bound to: 32'b00000000000000000000000000010000 
+	Parameter THRESH bound to: 32'b00000000000000000000000000000000 
+	Parameter IS_WRITE bound to: 1'b0 
+INFO: [Synth 8-6155] done synthesizing module 'fifo_ptr__parameterized0' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/fifo_ptr.sv:19]
+INFO: [Synth 8-6157] synthesizing module 'fifo_mem' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/fifo_mem.sv:12]
+	Parameter WIDTH bound to: 32'b00000000000000000000000000100000 
+	Parameter DEPTH bound to: 32'b00000000000000000000000000010000 
+INFO: [Synth 8-6155] done synthesizing module 'fifo_mem' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/fifo_mem.sv:12]
+INFO: [Synth 8-6155] done synthesizing module 'async_fifo' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/async_fifo.sv:42]
+INFO: [Synth 8-6157] synthesizing module 'bus_sync_2ff__parameterized1' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bus_sync_2ff.sv:14]
+	Parameter W bound to: 32'b00000000000000000000000000010001 
+INFO: [Synth 8-6155] done synthesizing module 'bus_sync_2ff__parameterized1' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bus_sync_2ff.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'rx_producer_fsm' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_producer_fsm.sv:21]
+	Parameter PROG_W bound to: 32'b00000000000000000000000000010001 
+INFO: [Synth 8-226] default block is never used [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_producer_fsm.sv:73]
+INFO: [Synth 8-6155] done synthesizing module 'rx_producer_fsm' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_producer_fsm.sv:21]
+INFO: [Synth 8-6157] synthesizing module 'rx_ahb_master_mac' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_ahb_master_mac.sv:19]
+	Parameter PROG_W bound to: 32'b00000000000000000000000000010001 
+	Parameter ADDR_W bound to: 32'b00000000000000000000000000010001 
+INFO: [Synth 8-226] default block is never used [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_ahb_master_mac.sv:75]
+INFO: [Synth 8-6155] done synthesizing module 'rx_ahb_master_mac' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_ahb_master_mac.sv:19]
+INFO: [Synth 8-6155] done synthesizing module 'rx_sequencer' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_sequencer.sv:22]
+INFO: [Synth 8-6157] synthesizing module 'tx_sequencer' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_sequencer.sv:16]
+	Parameter PROG_W bound to: 32'b00000000000000000000000000010001 
+	Parameter ADDR_W bound to: 32'b00000000000000000000000000010001 
+INFO: [Synth 8-6157] synthesizing module 'tx_ahb_master_mac' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_ahb_master_mac.sv:20]
+	Parameter PROG_W bound to: 32'b00000000000000000000000000010001 
+	Parameter ADDR_W bound to: 32'b00000000000000000000000000010001 
+INFO: [Synth 8-6155] done synthesizing module 'tx_ahb_master_mac' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_ahb_master_mac.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'tx_consumer_fsm' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_consumer_fsm.sv:19]
+	Parameter PROG_W bound to: 32'b00000000000000000000000000010001 
+INFO: [Synth 8-6155] done synthesizing module 'tx_consumer_fsm' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_consumer_fsm.sv:19]
+INFO: [Synth 8-6155] done synthesizing module 'tx_sequencer' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_sequencer.sv:16]
+INFO: [Synth 8-6157] synthesizing module 'apb_master' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_master.sv:13]
+INFO: [Synth 8-6157] synthesizing module 'apb_master_mac' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_master_mac.sv:18]
+	Parameter ADDR_W bound to: 32'b00000000000000000000000000010000 
+	Parameter SEL_W bound to: 32'b00000000000000000000000000000010 
+INFO: [Synth 8-226] default block is never used [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_master_mac.sv:71]
+INFO: [Synth 8-6155] done synthesizing module 'apb_master_mac' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_master_mac.sv:18]
+INFO: [Synth 8-6157] synthesizing module 'apb_master_phy' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_master_phy.sv:17]
+	Parameter ADDR_W bound to: 32'b00000000000000000000000000010000 
+INFO: [Synth 8-6155] done synthesizing module 'apb_master_phy' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_master_phy.sv:17]
+INFO: [Synth 8-6155] done synthesizing module 'apb_master' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_master.sv:13]
+INFO: [Synth 8-6157] synthesizing module 'tx_msg_arbiter' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_msg_arbiter.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'tx_msg_arbiter' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_msg_arbiter.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'composer' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/composer.sv:21]
+INFO: [Synth 8-6155] done synthesizing module 'composer' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/composer.sv:21]
+INFO: [Synth 8-6155] done synthesizing module 'sequencer_top' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/sequencer_top.sv:26]
+INFO: [Synth 8-6157] synthesizing module 'rx_resend_ctrl' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_resend_ctrl.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'rx_resend_ctrl' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_resend_ctrl.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'apb_interconnect' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_interconnect.sv:16]
+INFO: [Synth 8-6155] done synthesizing module 'apb_interconnect' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/apb_interconnect.sv:16]
+INFO: [Synth 8-6157] synthesizing module 'img_rgf' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/img_rgf.sv:20]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/img_rgf.sv:104]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/img_rgf.sv:181]
+INFO: [Synth 8-6155] done synthesizing module 'img_rgf' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/img_rgf.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'uart_rgf' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/uart_rgf.sv:21]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/uart_rgf.sv:98]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/uart_rgf.sv:158]
+INFO: [Synth 8-6155] done synthesizing module 'uart_rgf' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/uart_rgf.sv:21]
+INFO: [Synth 8-6157] synthesizing module 'fifo_rgf' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/fifo_rgf.sv:17]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/fifo_rgf.sv:83]
+INFO: [Synth 8-6157] synthesizing module 'bus_sync_2ff__parameterized2' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bus_sync_2ff.sv:14]
+	Parameter W bound to: 32'b00000000000000000000000000010010 
+INFO: [Synth 8-6155] done synthesizing module 'bus_sync_2ff__parameterized2' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/bus_sync_2ff.sv:14]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/fifo_rgf.sv:142]
+INFO: [Synth 8-6155] done synthesizing module 'fifo_rgf' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/fifo_rgf.sv:17]
+INFO: [Synth 8-6157] synthesizing module 'tx_mac' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_mac.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'tx_mac' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_mac.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'tx_phy' [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_phy.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'tx_phy' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/tx_phy.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'chiptop' (0#1) [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/chiptop.sv:21]
+WARNING: [Synth 8-7137] Register quiet_cnt_reg in module rx_phy_fsm has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/sources_1/imports/FinalProject_UARTburst_AHBsingle/rx_phy_fsm.sv:94]
+WARNING: [Synth 8-7129] Port wdata[31] in module fifo_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[30] in module fifo_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[29] in module fifo_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[28] in module fifo_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[27] in module fifo_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[26] in module fifo_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[25] in module fifo_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[24] in module fifo_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[31] in module uart_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[30] in module uart_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[29] in module uart_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[28] in module uart_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[27] in module uart_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[26] in module uart_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[25] in module uart_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[24] in module uart_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[31] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[30] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[29] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[28] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[27] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[26] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[25] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[24] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[47] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[46] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[45] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[44] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[43] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[42] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[41] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[40] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[39] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[38] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[37] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[36] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[35] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[34] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[33] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[23] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[22] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[21] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[20] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[19] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[18] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[17] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[16] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[15] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[14] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[13] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[12] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[11] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[10] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port img_size[9] in module img_rgf is either unconnected or has no load
+WARNING: [Synth 8-7129] Port bar_addr[7] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port bar_addr[6] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port bar_addr[5] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port bar_addr[4] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port bar_addr[3] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port bar_addr[2] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port bar_addr[1] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port bar_addr[0] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[31] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[30] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[29] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[28] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[27] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[26] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[25] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[24] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[23] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[22] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[21] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[20] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[19] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[18] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[17] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[16] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[15] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[14] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[13] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[12] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[11] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[10] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[9] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[8] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[7] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[6] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[5] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[4] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[3] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[2] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[1] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port phy_prdata[0] in module apb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port almost_empty_r in module tx_consumer_fsm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port almost_empty_g in module tx_consumer_fsm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port almost_empty_b in module tx_consumer_fsm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port hresp_err_r in module tx_ahb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port hresp_err_g in module tx_ahb_master_mac is either unconnected or has no load
+WARNING: [Synth 8-7129] Port hresp_err_b in module tx_ahb_master_mac is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1461.098 ; gain = 683.742
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1461.098 ; gain = 683.742
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1461.098 ; gain = 683.742
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.077 . Memory (MB): peak = 1461.098 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'u_clock_gen/u_clk_wiz_0'
+Finished Parsing XDC File [c:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'u_clock_gen/u_clk_wiz_0'
+Parsing XDC File [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc]
+CRITICAL WARNING: [Constraints 18-1056] Clock 'sys_clk_pin' completely overrides clock 'CLK100MHZ'.
+New: create_clock -period 10.000 -name sys_clk_pin -waveform {0.000 5.000} [get_ports CLK100MHZ], [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:9]
+Previous: create_clock -period 10.000 [get_ports CLK100MHZ], [c:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc:1]
+Resolution: Review the constraint files and remove the redundant clock definition(s). If the clock constraints are not saved in a file, you can first save the constraints to an XDC file and reload the design once the constraints have been corrected.
+WARNING: [Vivado 12-627] No clocks matched 'clk_out1_clk_wiz_0'. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:49]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:49]
+WARNING: [Vivado 12-627] No clocks matched 'selected_clk_280'. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:55]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:55]
+CRITICAL WARNING: [Vivado 12-4739] set_clock_groups:No valid object(s) found for '-group [get_clocks selected_clk_280]'. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:55]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+CRITICAL WARNING: [Vivado 12-4739] set_clock_groups:No valid object(s) found for '-group '. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:55]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/err_overflow0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/err_overflow_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/err_overflow_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/err_overflow_i__1' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/GND' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/VCC' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/almost_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/bin_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/bin_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/bin_next1_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/bin_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/gray_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/gray_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/gray_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/stop_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/stop_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/stop_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used0_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used0_i__1' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used0_i__2' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used0_i__3' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used1_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used1_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used1_i__1' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used1_i__2' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/err_overflow0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/err_overflow_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/err_overflow_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/err_overflow_i__1' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/GND' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/VCC' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/almost_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/bin_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/bin_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/bin_next1_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/bin_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/gray_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/gray_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/gray_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/stop_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/stop_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/stop_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/used0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/used0_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/used0_i__1' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/used0_i__2' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/used0_i__3' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/used1_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/used1_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/used1_i__1' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/used1_i__2' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_wptr/used_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/err_overflow0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/err_overflow_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/err_overflow_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/err_overflow_i__1' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/GND' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/VCC' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/almost_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/bin_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/bin_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/bin_next1_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/bin_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/gray_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/gray_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/gray_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/stop_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/stop_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/stop_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/used0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/used0_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/used0_i__1' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/used0_i__2' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/used0_i__3' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/used1_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/used1_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/used1_i__1' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/used1_i__2' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_wptr/used_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:220]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/err_overflow0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/err_overflow_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/err_overflow_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/err_overflow_i__1' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/GND' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/VCC' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/almost_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/bin_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/bin_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/bin_next1_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/bin_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/gray_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/gray_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/gray_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/stop_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/stop_next0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/stop_next_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used0_i' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_multicycle_path: 'u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_wptr/used0_i__0' is not a valid endpoint. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+INFO: [Common 17-14] Message 'Constraints 18-401' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc:221]
+Finished Parsing XDC File [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/chiptop_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/chiptop_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/chiptop_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1525.102 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.072 . Memory (MB): peak = 1525.102 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1525.102 ; gain = 747.746
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1525.102 ; gain = 747.746
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1525.102 ; gain = 747.746
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'rx_phy_fsm'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'rx_mac_fsm'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'classifier'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'ahb_master_phy'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'seq_top_fsm'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'rx_producer_fsm'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'rx_ahb_master_mac'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'tx_ahb_master_mac'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'tx_consumer_fsm'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'apb_master_mac'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'apb_master_phy'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'tx_mac'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'tx_phy'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              000 |                              000
+                   START |                              001 |                              001
+                    DATA |                              010 |                              010
+                  PARITY |                              011 |                              011
+                    STOP |                              100 |                              100
+                 CLEANUP |                              101 |                              101
+                  RESYNC |                              110 |                              110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'rx_phy_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    HUNT |                              001 |                               00
+                 COLLECT |                              010 |                               01
+                    HOLD |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'rx_mac_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  C_IDLE |                            00001 |                              000
+                C_REJECT |                            00010 |                              100
+           C_WAIT_ACCEPT |                            10000 |                              001
+             C_WAIT_DONE |                            01000 |                              010
+               C_RELEASE |                            00100 |                              011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'classifier'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                              001 |                               00
+                  S_ADDR |                              100 |                               01
+                  S_DATA |                              010 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'ahb_master_phy'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                              000 |                              000
+             S_REG_WRITE |                              001 |                              001
+              S_REG_READ |                              010 |                              010
+              S_WR_SETUP |                              011 |                              011
+              S_BURST_WR |                              100 |                              100
+              S_RD_SETUP |                              101 |                              101
+              S_BURST_RD |                              110 |                              110
+             S_RD_REFUSE |                              111 |                              111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'seq_top_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  P_IDLE |                               01 |                               00
+                 P_ARMED |                               10 |                               01
+                  P_PUSH |                               11 |                               10
+                   P_ACK |                               00 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'rx_producer_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  M_IDLE |                               01 |                               00
+                  M_WAIT |                               10 |                               01
+                 M_ISSUE |                               11 |                               10
+                  M_DONE |                               00 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'rx_ahb_master_mac'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  T_IDLE |                              000 |                              000
+                 T_SPACE |                              010 |                              001
+                 T_ISSUE |                              100 |                              010
+                  T_DONE |                              011 |                              011
+                  T_PUSH |                              001 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'tx_ahb_master_mac'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  C_IDLE |                              001 |                               00
+                 C_ARMED |                              100 |                               01
+                  C_SEND |                              010 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'tx_consumer_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                               01 |                               00
+                  S_XFER |                               11 |                               01
+                  S_WAIT |                               10 |                               10
+                  S_RESP |                               00 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'apb_master_mac'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                              001 |                               00
+                 S_SETUP |                              100 |                               01
+                S_ACCESS |                              010 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'apb_master_phy'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                              000 |                              000
+                   S_REQ |                              100 |                              001
+                 S_WAITB |                              011 |                              010
+                  S_DONE |                              010 |                              011
+                   S_GAP |                              001 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'tx_mac'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  P_IDLE |                              000 |                              000
+                 P_START |                              001 |                              001
+                  P_DATA |                              010 |                              010
+                P_PARITY |                              011 |                              011
+                  P_STOP |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'tx_phy'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1525.102 ; gain = 747.746
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   17 Bit       Adders := 3     
+	   2 Input    8 Bit       Adders := 4     
+	   2 Input    6 Bit       Adders := 2     
+	   2 Input    5 Bit       Adders := 26    
+	   3 Input    5 Bit       Adders := 12    
+	   2 Input    4 Bit       Adders := 4     
+	   2 Input    3 Bit       Adders := 2     
++---XORs : 
+	   2 Input      5 Bit         XORs := 12    
+	   2 Input      1 Bit         XORs := 4     
++---XORs : 
+	                9 Bit    Wide XORs := 1     
+	                8 Bit    Wide XORs := 1     
+	                5 Bit    Wide XORs := 48    
++---Registers : 
+	              128 Bit    Registers := 1     
+	               48 Bit    Registers := 1     
+	               32 Bit    Registers := 11    
+	               18 Bit    Registers := 4     
+	               17 Bit    Registers := 5     
+	               16 Bit    Registers := 1     
+	               14 Bit    Registers := 3     
+	                9 Bit    Registers := 2     
+	                8 Bit    Registers := 43    
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 50    
+	                4 Bit    Registers := 4     
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 88    
++---RAMs : 
+	             512K Bit	(16384 X 32 bit)          RAMs := 3     
+	              512 Bit	(16 X 32 bit)          RAMs := 6     
++---Muxes : 
+	   2 Input  128 Bit        Muxes := 4     
+	   3 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 1     
+	   2 Input   24 Bit        Muxes := 3     
+	   4 Input   24 Bit        Muxes := 1     
+	   2 Input   17 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 3     
+	   2 Input    8 Bit        Muxes := 16    
+	   2 Input    7 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 2     
+	   5 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 28    
+	   2 Input    4 Bit        Muxes := 7     
+	   7 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 11    
+	  13 Input    3 Bit        Muxes := 1     
+	   7 Input    3 Bit        Muxes := 1     
+	   3 Input    3 Bit        Muxes := 2     
+	   6 Input    3 Bit        Muxes := 1     
+	   8 Input    3 Bit        Muxes := 1     
+	   5 Input    3 Bit        Muxes := 4     
+	   3 Input    2 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 5     
+	   5 Input    2 Bit        Muxes := 1     
+	   4 Input    2 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 96    
+	   3 Input    1 Bit        Muxes := 10    
+	   7 Input    1 Bit        Muxes := 16    
+	   5 Input    1 Bit        Muxes := 12    
+	   4 Input    1 Bit        Muxes := 9     
+	   8 Input    1 Bit        Muxes := 1     
+	   6 Input    1 Bit        Muxes := 5     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 1616.332 ; gain = 838.977
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object               | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|chiptop     | g_bank[0].u_sram/mem_reg | 16 K x 32(READ_FIRST)  | W |   | 16 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 16     | 
+|chiptop     | g_bank[1].u_sram/mem_reg | 16 K x 32(READ_FIRST)  | W |   | 16 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 16     | 
+|chiptop     | g_bank[2].u_sram/mem_reg | 16 K x 32(READ_FIRST)  | W |   | 16 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 16     | 
++------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------+--------------------------------------------------------------+-----------+----------------------+-------------+
+|Module Name | RTL Object                                                   | Inference | Size (Depth x Width) | Primitives  | 
++------------+--------------------------------------------------------------+-----------+----------------------+-------------+
+|chiptop     | u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
+|chiptop     | u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
+|chiptop     | u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
+|chiptop     | u_sequencer_top/u_tx_seq/g_tx_afifo[2].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
+|chiptop     | u_sequencer_top/u_tx_seq/g_tx_afifo[1].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
+|chiptop     | u_sequencer_top/u_tx_seq/g_tx_afifo[0].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
++------------+--------------------------------------------------------------+-----------+----------------------+-------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3321] set_multicycle_path : Empty to list for constraint at line 222 of {C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc}. [{C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc}:222]
+WARNING: [Synth 8-3321] set_multicycle_path : Empty to list for constraint at line 230 of {C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc}. [{C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc}:230]
+WARNING: [Synth 8-3321] set_multicycle_path : Empty to list for constraint at line 275 of {C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc}. [{C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.srcs/constrs_1/imports/FinalProject_UARTburst_AHBsingle/Nexys-A7-100T-Master.xdc}:275]
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 1664.059 ; gain = 886.703
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1766.613 ; gain = 989.258
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object               | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|chiptop     | g_bank[0].u_sram/mem_reg | 16 K x 32(READ_FIRST)  | W |   | 16 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 16     | 
+|chiptop     | g_bank[1].u_sram/mem_reg | 16 K x 32(READ_FIRST)  | W |   | 16 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 16     | 
+|chiptop     | g_bank[2].u_sram/mem_reg | 16 K x 32(READ_FIRST)  | W |   | 16 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 16     | 
++------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+
+Distributed RAM: Final Mapping Report
++------------+--------------------------------------------------------------+-----------+----------------------+-------------+
+|Module Name | RTL Object                                                   | Inference | Size (Depth x Width) | Primitives  | 
++------------+--------------------------------------------------------------+-----------+----------------------+-------------+
+|chiptop     | u_sequencer_top/u_rx_seq/g_rx_afifo[0].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
+|chiptop     | u_sequencer_top/u_rx_seq/g_rx_afifo[1].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
+|chiptop     | u_sequencer_top/u_rx_seq/g_rx_afifo[2].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
+|chiptop     | u_sequencer_top/u_tx_seq/g_tx_afifo[2].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
+|chiptop     | u_sequencer_top/u_tx_seq/g_tx_afifo[1].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
+|chiptop     | u_sequencer_top/u_tx_seq/g_tx_afifo[0].u_afifo/u_mem/mem_reg | Implied   | 16 x 32              | RAM32M x 6  | 
++------------+--------------------------------------------------------------+-----------+----------------------+-------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_8 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_9 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_10 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_11 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_12 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_13 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_14 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[0].u_sram/mem_reg_15 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_8 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_9 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_10 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_11 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_12 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_13 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_14 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[1].u_sram/mem_reg_15 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_8 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_9 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_10 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_11 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_12 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_13 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_14 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance g_bank[2].u_sram/mem_reg_15 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1766.613 ; gain = 989.258
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1952.324 ; gain = 1174.969
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1952.324 ; gain = 1174.969
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:46 ; elapsed = 00:00:50 . Memory (MB): peak = 1952.324 ; gain = 1174.969
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:46 ; elapsed = 00:00:50 . Memory (MB): peak = 1952.324 ; gain = 1174.969
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1952.324 ; gain = 1174.969
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1952.324 ; gain = 1174.969
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |clk_wiz  |     1|
+|2     |BUFGMUX  |     1|
+|3     |CARRY4   |    28|
+|4     |LUT1     |     9|
+|5     |LUT2     |    69|
+|6     |LUT3     |   117|
+|7     |LUT4     |   193|
+|8     |LUT5     |   241|
+|9     |LUT6     |   367|
+|10    |MUXF7    |    17|
+|11    |MUXF8    |     8|
+|12    |RAM32M   |    30|
+|13    |RAM32X1D |    12|
+|14    |RAMB36E1 |    48|
+|15    |FDCE     |  1310|
+|16    |FDPE     |    32|
+|17    |FDRE     |     8|
+|18    |IBUF     |     3|
+|19    |OBUF     |     2|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1952.324 ; gain = 1174.969
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 196 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:36 ; elapsed = 00:00:46 . Memory (MB): peak = 1952.324 ; gain = 1110.965
+Synthesis Optimization Complete : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1952.324 ; gain = 1174.969
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.057 . Memory (MB): peak = 1957.539 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 144 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1965.195 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 43 instances were transformed.
+  BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 30 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 12 instances
+
+Synth Design complete | Checksum: bbb2cd34
+INFO: [Common 17-83] Releasing license: Synthesis
+216 Infos, 213 Warnings, 3 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.statsThreshold
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1965.195 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/eldar laptop/Desktop/riechmanGoogle/Verilog_projects/Lab12/Lab12.runs/synth_1/chiptop.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file chiptop_utilization_synth.rpt -pb chiptop_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Jul 23 13:54:08 2026...
